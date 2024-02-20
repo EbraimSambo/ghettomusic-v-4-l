@@ -1,0 +1,244 @@
+@use '../functions/helpers'
+@use '../functions/variables'
+
+#appLayout
+    position: relative
+    display: grid
+    grid-template-columns: minmax(0,2fr) minmax(0,8fr)
+    gap: .7rem
+    min-height: 100vh
+    @include helpers.responsive($w: 1024px)
+        grid-template-columns: minmax(100%,1fr)
+    &,a
+        color: map-get(variables.$colors, textColor)
+    #sidebar, #global-footer, main
+        background: #121212
+        padding: 2rem
+        @include helpers.responsive($w: 911px)
+        padding: 2rem 1.5rem
+    #sidebar
+        height: 100vh
+        background: #121212
+        box-shadow: 0 .2rem .5rem rgba(0,0,0,.4)
+        position: sticky
+        @include helpers.responsive($w: 1024px)
+            position: fixed
+            width: 300px
+            right: none
+            left: -99%
+            z-index: 1000
+            &.active
+                left: 0
+        #closebtn
+            display: none
+            @include helpers.responsive($w: 1024px)
+                display: inline-block
+            position: absolute
+            top: 2%
+            right: 5%
+            background: transparent
+            padding: 0.4rem
+        top: 0
+        bottom: 0
+        right: 0
+        @include helpers.flex-columm-space-between
+        .top
+            @include helpers.flex-columm-gap(1.5rem)
+            .container
+                margin-left: 1.4rem
+                @include helpers.responsive($w: 1224px)
+                    margin-left: 0.8rem
+                h2
+                    color: map-get(variables.$Hovercolors, one)
+                    font-size: 1.2rem
+                ul
+                    padding: 1rem
+        a:hover
+            color: map-get(variables.$Hovercolors, one)
+
+    #leftLayout
+        position: relative
+    #global-header
+        background: #121212
+        box-shadow: 0 .2rem .5rem rgba(0,0,0,.4)
+        position: sticky
+        top: 0
+        left: 0
+        right: 0
+        padding: 1.7rem 2rem
+        width: 100%
+        @include helpers.flex-center
+        justify-content: flex-end
+        z-index: 999 
+        @include helpers.responsive(1024px)
+            justify-content: space-between
+    #centerLayout
+        @include helpers.flex-columm-gap(.7rem)
+        justify-content: space-between
+        min-height: 100vh
+        
+
+
+#nav-links
+    @include helpers.flex-center-gap(1.3rem) 
+    li
+        a
+            @include helpers.flex-center-gap(.6rem) 
+            &:hover
+                color: map-get(variables.$Hovercolors, one)
+            span:first-child
+                font-size: 2rem
+            span:last-child
+                font-weight: 700
+                font-size: 1.2rem
+            .ajust
+                padding-top: 0.2rem
+        .search-btn
+            font-size: 1.6rem
+            cursor: pointer 
+            &:hover
+                color: map-get(variables.$Hovercolors, one)
+
+.ul-sidebar
+    @include helpers.flex-columm-gap(1.3rem)
+    li
+        a
+            @include helpers.flex-center-gap(.8rem)
+            span:first-child
+                font-size: 1.4rem
+            span:last-child
+                font-weight: 700
+                font-size: 1.2rem
+
+.bottom-sidebar
+    a
+        gap: 0.3rem
+        @include helpers.flex-center-center
+        &:hover
+            color: map-get(variables.$Hovercolors, one)
+    span
+        &:first-child
+            font-size: 1.6rem
+        &:last-child
+            font-size: 1.1rem
+
+#logo
+    @include helpers.flex-center-gap(.4rem)
+    .desc
+        font-size: 1.3rem
+        font-weight: 600
+    &:hover
+        color: map-get(variables.$Hovercolors, one)
+
+
+// footerGeneral
+#global-footer
+    background: #121212
+    padding: 2rem 0
+    .container
+        @include helpers.flex-columm-gap(1.4rem)
+    #logo
+        justify-content: center
+    #map-site, #links-social
+        @include helpers.flex-center-gap(1.5rem)
+        justify-content: center
+        flex-wrap: wrap
+        a:hover
+            color: map-get(variables.$Hovercolors, one)
+    #map-site
+        a
+            font-size: 1.1rem
+    #links-social
+        a
+            font-size: 1.3rem
+
+#search-container
+    color: map-get(variables.$colors, textColor)
+    display: flex
+    .container
+        max-width: 1024px
+        width: 100%
+        margin: 0 auto
+        padding: 2rem
+        @include helpers.flex-columm-gap($gap: 3rem)
+        align-items: center
+        .top-search
+            max-width: 500px
+            width: 100%
+            @include helpers.flex-columm-gap($gap: 1rem)
+            align-items: center
+            form
+                width: 100%
+                height: 40px 
+                border: .1rem solid map-get(variables.$colors, textColor)
+                @include helpers.flex-center-gap($gap: 1.2rem)
+                padding: 0 1.5rem
+                border-radius: 2rem
+                background: #121212d7
+                input, button
+                    background: transparent
+                    color: map-get(variables.$colors, textColor)
+                input
+                    font-size: 1.2rem
+                    &::placeholder
+                        color: map-get(variables.$colors, textColor)
+        .bottom-search
+            @include helpers.flex-columm-gap($gap: 3rem)
+        .results
+            @include helpers.flex-columm-gap($gap: 2rem)
+            p
+                font-size: 1.6rem
+                font-weight: 700
+                
+    
+.loader
+    width: 14px
+    height: 14px
+    border-radius: 50%
+    border: 2px solid #ccc
+    border-top-color: #a5a2a263
+    animation: loading 1s linear infinite
+    @keyframes loading
+        to
+            transform: rotate(360deg)
+
+#menu-btn
+    border: .1rem solid #fff
+    padding: 0.3rem .4rem
+    border-radius: .4rem
+
+#download-pop
+    box-shadow: 0 .2rem .5rem rgba(0,0,0,.4)
+    padding: 2rem
+    background: #fff
+    color: #111
+    position: fixed
+    text-align: center
+    bottom: 0
+    right: 3%
+    @include helpers.responsive($w: 700px)
+        right: 2% !important
+        left: 2%
+        width: auto
+    width: 450px
+    border-radius: .3rem .3rem 0 0
+    z-index: 1000
+    @include helpers.flex-columm-gap($gap: 2rem)
+    h3
+        margin-top: 2rem
+        font-size: 1.6rem
+        font-weight: 700
+    p
+        font-size: 1.4rem
+        font-weight: 800
+        line-height: 2.5rem
+        a
+            color: #06b440
+
+    #closebtn
+        position: absolute
+        background: transparent
+        top: 5%
+        right: 3%
+        color: #111 !important
+        padding: 0.2rem
